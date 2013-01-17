@@ -18,10 +18,10 @@ module Stickler::Middleware
         case compress_method
         when :gzip
           headers['Content-Type'] = 'application/x-gzip'
-          stream = Gem.gzip( body.first )
+          stream = Gem.gzip( body.each.first )
         when :deflate
           headers['Content-Type'] = 'application/x-deflate'
-          stream = Gem.deflate( body.first )
+          stream = Gem.deflate( body.each.first )
         end
       end
       stream = [ stream.to_s ] unless stream.respond_to?( :each )
